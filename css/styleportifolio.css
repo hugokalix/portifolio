@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-color: #1f242d;      /* Fundo Cinza Escuro (Igual ref) */
+    --second-bg-color: #323946;
+    --text-color: #fff;       /* Branco */
+    --main-color: #00fa55;    /* O VERDE NEON CORRETO */
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden; /* Evita rolagem lateral */
+}
+
+/* HEADER - Ajustado para não quebrar */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+    cursor: default;
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    margin-left: 4rem;
+    transition: .3s;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: var(--main-color);
+}
+
+/* HOME - Layout Rígido para não achatar */
+.home {
+    display: flex;
+    justify-content: space-between; /* Texto na esq, Foto na dir */
+    align-items: center;
+    min-height: 100vh;
+    padding: 10rem 9% 2rem; /* Mais espaço no topo por causa do menu */
+}
+
+.home-content {
+    max-width: 60rem;
+    z-index: 2; /* Fica acima de qualquer efeito */
+}
+
+.home-content h1 {
+    font-size: 4.5rem; /* Diminuí um pouco para não quebrar */
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.home-content h3 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.home-content h3 span {
+    color: var(--main-color);
+}
+
+.home-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 4rem;
+}
+
+/* BOTÕES E SOCIAL */
+.btn-box {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-box a.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 5rem;
+    background: var(--main-color);
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--bg-color);
+    box-shadow: 0 0 1rem var(--main-color);
+    transition: .5s ease;
+}
+
+.btn-box a.btn:hover {
+    box-shadow: none;
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: .2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 0 0.5rem;
+    transition: .5s ease;
+}
+
+.social-media a:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+/* --- AQUI ESTÁ A CORREÇÃO DA FOTO --- */
+.home-img {
+    position: relative;
+    width: 35vw; 
+    height: 35vw; /* Força ser um quadrado */
+    max-width: 450px;
+    max-height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* O Arco Verde atrás da foto */
+.home-img::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: .2rem solid var(--main-color); /* Borda Verde */
+    border-radius: 50%;
+    /* Truque para deixar o arco incompleto igual a referencia */
+    border-left-color: transparent; 
+    border-bottom-color: transparent;
+    transform: rotate(45deg); /* Gira para a abertura ficar estilosa */
+    animation: spin 10s linear infinite; /* Faz girar devagar */
+}
+
+.home-img img {
+    width: 90%; /* Um pouco menor que o arco */
+    height: 90%;
+    object-fit: cover; /* Garante que a foto preencha sem esticar */
+    border-radius: 50%;
+    border: .2rem solid var(--main-color); /* Borda fina na foto */
+    box-shadow: 0 0 20px var(--main-color); /* Brilho Verde */
+}
+
+/* Animação do arco girando */
+@keyframes spin {
+    0% { transform: rotate(45deg); }
+    100% { transform: rotate(405deg); }
+}
+
+/* Responsividade para celular/tablet */
+@media (max-width: 991px) {
+    .header { padding: 2rem 4%; }
+    .home { 
+        padding: 10rem 4% 2rem; 
+        flex-direction: column; /* Um embaixo do outro */
+        text-align: center;
+    }
+    .home-content h1 { font-size: 3.5rem; }
+    .btn-box { justify-content: center; }
+    
+    .home-img {
+        width: 70vw;
+        height: 70vw;
+        margin-top: 4rem;
+    }
+}
+
+/* --- SUBSTITUA O BLOCO ANTERIOR POR ESTE --- */
+
+.text-animate {
+    position: relative;
+    display: inline-block; /* Importante para a largura funcionar */
+    color: var(--main-color); /* Garante que o texto seja Verde */
+    font-weight: 700;
+    
+    /* O SEGREDO DO EFEITO: */
+    overflow: hidden; /* Esconde o que estiver fora da largura */
+    white-space: nowrap; /* Impede o texto de quebrar linha */
+    border-right: 2px solid var(--main-color); /* O cursor piscando */
+    width: 0; /* Começa escondido (largura zero) */
+    
+    /* ANIMAÇÃO */
+    /* 6s = Tempo total (digita, espera, apaga) */
+    /* steps(20) = Faz o efeito "travadinho" de máquina de escrever */
+    animation: typing 6s steps(20) infinite alternate;
+}
+
+/* Não precisamos mais do ::before para o cursor, pois usamos border-right acima */
+.text-animate::before {
+    display: none; 
+}
+
+/* A ANIMAÇÃO MAIS SIMPLES E FUNCIONAL */
+@keyframes typing {
+    0% {
+        width: 0; /* Começa vazio */
+    }
+    40%, 60% {
+        width: 100%; /* Digita tudo e ESPERA um pouco (pausa para ler) */
+    }
+    100% {
+        width: 0; /* Apaga tudo */
+    }
+}
+
+
